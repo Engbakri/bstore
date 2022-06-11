@@ -21,7 +21,7 @@
     <div class="header-bottom ptb-40 clearfix">
         <div class="header-bottom-wrapper pr-200 pl-200">
             <div class="logo-3">
-                <a href="index.html">
+                <a href="{{ route('home') }}">
                     <img src="assets/img/logo/logo-3.png" alt="">
                 </a>
             </div>
@@ -50,59 +50,41 @@
             <div class="header-cart-3">
                 <a href="#">
                     <i class="ti-shopping-cart"></i>My Cart
-                    <span>02</span>
+                    <span>{{ Cart::getTotalQuantity()}}</span>
                 </a>
                 <ul class="cart-dropdown">
-                    <li class="single-product-cart">
-                        <div class="cart-img">
-                            <a href="#"><img src="assets/img/cart/1.jpg" alt=""></a>
-                        </div>
-                        <div class="cart-title">
-                            <h5><a href="#"> Bits Headphone</a></h5>
-                            <h6><a href="#">Black</a></h6>
-                            <span>$80.00 x 1</span>
-                        </div>
-                        <div class="cart-delete">
-                            <a href="#"><i class="ti-trash"></i></a>
-                        </div>
-                    </li>
-                    <li class="single-product-cart">
-                        <div class="cart-img">
-                            <a href="#"><img src="assets/img/cart/2.jpg" alt=""></a>
-                        </div>
-                        <div class="cart-title">
-                            <h5><a href="#"> Bits Headphone</a></h5>
-                            <h6><a href="#">Black</a></h6>
-                            <span>$80.00 x 1</span>
-                        </div>
-                        <div class="cart-delete">
-                            <a href="#"><i class="ti-trash"></i></a>
-                        </div>
-                    </li>
-                    <li class="single-product-cart">
-                        <div class="cart-img">
-                            <a href="#"><img src="assets/img/cart/3.jpg" alt=""></a>
-                        </div>
-                        <div class="cart-title">
-                            <h5><a href="#"> Bits Headphone</a></h5>
-                            <h6><a href="#">Black</a></h6>
-                            <span>$80.00 x 1</span>
-                        </div>
-                        <div class="cart-delete">
-                            <a href="#"><i class="ti-trash"></i></a>
-                        </div>
-                    </li>
+                    
+                    @foreach ($cartItems as $item)
+                        <li class="single-product-cart">
+                            <div class="cart-img">
+                                <a href="#"><img src="{{ $item->attributes->image }}" alt="" width="100px;" height="100px;"></a>
+                            </div>
+                            <div class="cart-title">
+                                <h5><a href="#">{{ $item->name }}</a></h5>
+                                <h6><a href="#"></a></h6>
+                                <span> ${{ $item->price }} x {{ $item->quantity }}</span>
+                            </div>
+                            <div class="cart-delete">
+                                    <form action="{{ route('cart.remove') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $item->id }}" name="id">
+                                        <button><i class="ti-trash"></i></button>
+                                    </form>
+                                
+                            </div>
+                        </li>
+                    @endforeach
                     <li class="cart-space">
                         <div class="cart-sub">
                             <h4>Subtotal</h4>
                         </div>
                         <div class="cart-price">
-                            <h4>$240.00</h4>
+                            <h4> ${{ Cart::getTotal() }}</h4>
                         </div>
                     </li>
                     <li class="cart-btn-wrapper">
-                        <a class="cart-btn btn-hover" href="#">view cart</a>
-                        <a class="cart-btn btn-hover" href="#">checkout</a>
+                        <a class="cart-btn btn-hover" href="{{ route('cart.list') }}">view cart</a>
+                        <a class="cart-btn btn-hover" href="{{ route('checkout') }}">checkout</a>
                     </li>
                 </ul>
             </div>

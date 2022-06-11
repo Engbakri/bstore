@@ -91,48 +91,24 @@
                 <div class="header-cart">
                     <a class="icon-cart-furniture" href="#">
                         <i class="ti-shopping-cart"></i>
-                        <span class="shop-count-furniture green">02</span>
+                        <span class="shop-count-furniture green"> </span>
                     </a>
                     <ul class="cart-dropdown">
+                    @foreach ($cartItems as $item)
                         <li class="single-product-cart">
                             <div class="cart-img">
-                                <a href="#"><img src="{{ asset('assets/img/cart/1.jpg') }}" alt=""></a>
+                                <a href="#"><img src="{{ $item->attributes->image }}" alt=""></a>
                             </div>
                             <div class="cart-title">
-                                <h5><a href="#"> Bits Headphone</a></h5>
+                                <h5><a href="#">{{ $item->name }}</a></h5>
                                 <h6><a href="#">Black</a></h6>
-                                <span>$80.00 x 1</span>
+                                <span> ${{ $item->price }} x {{ $item->quantity }}</span>
                             </div>
                             <div class="cart-delete">
                                 <a href="#"><i class="ti-trash"></i></a>
                             </div>
                         </li>
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="{{ asset('assets/img/cart/2.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h5><a href="#"> Bits Headphone</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$80.00 x 1</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </div>
-                        </li>
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="{{ asset('assets/img/cart/3.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h5><a href="#"> Bits Headphone</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$80.00 x 1</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </div>
-                        </li>
+                    @endforeach
                         <li class="cart-space">
                             <div class="cart-sub">
                                 <h4>Subtotal</h4>
