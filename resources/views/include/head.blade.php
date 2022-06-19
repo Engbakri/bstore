@@ -19,5 +19,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <script src="{{ asset('assets/js/vendor/modernizr-3.11.7.min.js')}}"></script>
 </head>

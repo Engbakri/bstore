@@ -28,6 +28,13 @@
             </a>
 
           </li>
+          <li class="github-link mr-3">
+            <a class="btn btn-outline-secondary btn-sm" href="{{ route('home') }}" target="_blank">
+              <span class="d-none d-md-inline-block mr-2">Go Home</span>
+              <i class="mdi mdi-home-circle"></i>
+            </a>
+
+          </li>
           <li class="dropdown notifications-menu">
             <button class="dropdown-toggle" data-toggle="dropdown">
               <i class="mdi mdi-bell-outline"></i>

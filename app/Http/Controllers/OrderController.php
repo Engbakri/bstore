@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderItem;
 use App\Models\ShippingInfo;
 use Monarobase\CountryList\CountryListFacade;
+use DB;
 
 class OrderController extends Controller
 {
@@ -17,7 +19,16 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $userOrders = Order::where('user_id',auth()->user()->id)->paginate(15);
+
+        return view('customer.orders.index',compact('userOrders'));
+    }
+
+    public function indexAdmin()
+    {
+        $userOrders = Order::paginate(15);
+
+        return view('admin.orders.index',compact('userOrders'));
     }
 
     /**
@@ -45,14 +56,14 @@ class OrderController extends Controller
             'order_number'      =>  'ORD-'.strtoupper(uniqid()),
             'user_id'           =>   auth()->user()->id,
             'status'            =>  'Processing',
-            'grand_total'       =>  Cart::getSubTotal(),
-            'item_count'        =>  Cart::getTotalQuantity(),
+            'grand_total'       =>  \Cart::getSubTotal(),
+            'item_count'        =>  \Cart::getTotalQuantity(),
             
         ]);
     
         if ($order) {
     
-            $items = Cart::getContent();
+            $items = \Cart::getContent();
     
             foreach ($items as $item)
             {
@@ -68,9 +79,21 @@ class OrderController extends Controller
     
                 $order->items()->save($orderItem);
             }
+
+            ShippingInfo::create([
+                'user_id'           =>  auth()->user()->id,
+                'address_line1'     =>  $request->addr1,
+                'address_line2'     =>  $request->addr2,
+                'city'              =>  $request->city,
+                'state'             =>  $request->state,
+                'country'           =>  $request->country,
+                'postal_code'       =>  $request->postcode,
+                
+            ]);
+
         }
-    
-        return $order;
+        \Cart::clear();
+        return  redirect()->route('home');
     }
 
     /**
@@ -81,7 +104,16 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::find($id);
+
+        return view('customer.orders.show',compact('order'));
+    }
+
+    public function showAdmin($id)
+    {
+        $order = Order::find($id);
+
+        return view('admin.orders.show',compact('order'));
     }
 
     /**
@@ -92,7 +124,9 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+      
+        return view('admin.orders.status',compact('order'));
     }
 
     /**
@@ -104,7 +138,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('orders')
+              ->where('id', $request->order_id)
+              ->update(['status' => $request->status]);
+
+
+              return redirect()->route('orders.admin.index');
     }
 
     /**

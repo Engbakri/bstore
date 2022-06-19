@@ -20,7 +20,7 @@
                 @include('dashboard.include.header')
 
                     <div class="content-wrapper">
-                        				 
+                      @show
                              @yield('content')   
                         
                     </div>
@@ -31,5 +31,7 @@
     </div>
 
     @include('dashboard.include.script')
+
+   
   </body>
 </html>

@@ -45,7 +45,7 @@
                                 <td > {{ $product->id }} </td>
                                 <td > {{ $product->product_name }}</td>
                                 <td > {{ $product->product_price }}</td>
-                                <td > <img src="{{ $product->product_image }}" width="100" height="100"> </td>
+                                <td > <img src="{{ asset($product->product_image) }}" width="100" height="100"> </td>
                                 <td >
                                    @foreach ($product->categories as $item)
                                       <span class=" badge badge-success">{{ $item->category_name }}</span>
@@ -59,7 +59,9 @@
                                         <a href="{{ route('product.edit',$product->id) }}">Edit</a>
                                       </li>
                                       <li class="dropdown-item">
-                                        <a href="#">Remove</a>
+                                        <a data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('product.delete', $product->id) }}" title="Delete Product">
+                                          <i class="fas fa-trash text-danger  fa-lg">Delete</i>
+                                      </a>
                                       </li>
                                     </ul>
                                   </div>
@@ -73,6 +75,22 @@
                 </div>
         </div>	
     </div>
-
+    <!-- small modal -->
+    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body" id="smallBody">
+                  <div>
+                      <!-- the result to be displayed apply here -->
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
    
 @endsection

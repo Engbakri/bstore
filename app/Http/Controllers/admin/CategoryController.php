@@ -13,13 +13,18 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $categories = Category::root()->get();
-        
-        
         return view('admin.category.index',compact('categories'));
     }
+
+  
 
     /**
      * Show the form for creating a new resource.
@@ -49,7 +54,8 @@ class CategoryController extends Controller
             'parent_id' => $request->parent,
         ]);
 
-        return  redirect()->route('category')->with('Category Created.');
+       
+        return  redirect()->route('category')->with('message','Category added Successfully');
         
     }
 
@@ -97,8 +103,12 @@ class CategoryController extends Controller
         $category->parent_id = $request->parent;
 
         $category->update();
+        
+      
+        // //set message with title
+        // toastr()->success('Have fun storming the castle!', 'Miracle Max Says');
 
-        return  redirect()->route('category')->with('success', 'Category Updated.');
+        return  redirect()->route('category')->with('message','Category Updated Successfully');
     }
 
     /**
@@ -107,8 +117,19 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function delete($id)
+    {
+        $category = Category::find($id);
+
+        return view('admin.category.delete', compact('category'));
+    }
+
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->delete();
+
+        return redirect()->route('category')->with('error','Category Deleted Successfully');;
     }
 }

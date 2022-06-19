@@ -5,10 +5,8 @@
     <div class="content">
         <div class="row">
             <div class="col-12">
-                    @if(Session::has('success'))
-                    <div class="alert alert-success text-center">
-                        {{Session::get('success')}}
-                    </div>
+                    @if(Session::has('message'))
+                        {{Session::get('message')}}
                     @endif
                 <!-- Recent Order Table -->
                 <div class="card card-table-border-none" id="recent-orders">
@@ -55,7 +53,9 @@
                                         <a href="{{ route('category.edit',$category->id) }}">Edit</a>
                                       </li>
                                       <li class="dropdown-item">
-                                        <a href="#">Remove</a>
+                                        <a data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('category.delete', $category->id) }}" title="Delete Category">
+                                          <i class="fas fa-trash text-danger  fa-lg">Delete</i>
+                                      </a>
                                       </li>
                                     </ul>
                                   </div>
@@ -69,6 +69,28 @@
                 </div>
         </div>	
     </div>
+
+
+    <!-- small modal -->
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body" id="smallBody">
+              <div>
+                  <!-- the result to be displayed apply here -->
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
 
    
 @endsection

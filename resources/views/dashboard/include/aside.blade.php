@@ -69,6 +69,32 @@
             </ul>
           </li>
           <li  class="has-sub" >
+            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#adminorder"
+              aria-expanded="false" aria-controls="adminorder">
+              <i class="mdi mdi-account-arrow-right"></i>
+              <span class="nav-text">Orders</span> <b class="caret"></b>
+            </a>
+            <ul  class="collapse"  id="adminorder"
+              data-parent="#sidebar-menu">
+              <div class="sub-menu">
+                
+                
+                  
+                    <li >
+                      <a class="sidenav-item-link" href="{{ route('orders.admin.index') }}">
+                        <span class="nav-text">Orders</span>
+                        
+                      </a>
+                      
+                    </li>
+                  
+                
+
+                
+              </div>
+            </ul>
+          </li>
+          <li  class="has-sub" >
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#Categories"
               aria-expanded="false" aria-controls="Categories">
               <i class="mdi mdi-dropbox"></i>
@@ -77,9 +103,6 @@
             <ul  class="collapse"  id="Categories"
               data-parent="#sidebar-menu">
               <div class="sub-menu">
-                
-                
-                  
                     <li >
                       <a class="sidenav-item-link" href="{{ route('category') }}">
                         <span class="nav-text">Categories</span>
@@ -90,10 +113,6 @@
                         
                       </a>
                     </li>
-                  
-                
-
-                
               </div>
             </ul>
           </li>
@@ -184,8 +203,133 @@
               </div>
             </ul>
           </li>
+          <li  class="has-sub" >
+            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ads"
+              aria-expanded="false" aria-controls="ads">
+              <i class="mdi mdi-account-supervisor"></i>
+              <span class="nav-text">Slider ads</span> <b class="caret"></b>
+            </a>
+            <ul  class="collapse"  id="ads"
+              data-parent="#sidebar-menu">
+              <div class="sub-menu">
+                
+                
+                  
+                    <li >
+                      <a class="sidenav-item-link" href="{{ route('ads') }}">
+                        <span class="nav-text">Sliders</span>
+                        
+                      </a>
+                      <a class="sidenav-item-link" href="{{ route('ads.create') }}">
+                        <span class="nav-text">Add New</span>
+                        
+                      </a>
+                    </li>
+                  
+                
+
+                
+              </div>
+            </ul>
+          </li>
       </ul>
-    @endif
+      @elseif(Auth::user()->hasRole('user'))
+      <ul class="nav sidebar-inner" id="sidebar-menu">
+        
+        <li  class="has-sub" >
+          <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
+            aria-expanded="false" aria-controls="dashboard">
+            <i class="mdi mdi-view-dashboard-outline"></i>
+            <span class="nav-text">Dashboard</span> <b class="caret"></b>
+          </a>
+          <ul  class="collapse"  id="dashboard"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+              
+              
+                
+                  <li >
+                    <a class="sidenav-item-link" href="{{ route('dashboard') }}">
+                      <span class="nav-text">Dashboard</span>
+                      
+                    </a>
+                  </li>
+                
+              
+
+              
+              
+                
+                  <li >
+                    <a class="sidenav-item-link" href="analytics.html">
+                      <span class="nav-text">Customer Dashboard</span>
+                      
+                    
+                      
+                    </a>
+                  </li>
+                
+              
+
+              
+            </div>
+          </ul>
+        </li>
+        <li  class="has-sub" >
+          <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#cart"
+            aria-expanded="false" aria-controls="cart">
+            <i class="mdi mdi-dropbox"></i>
+            <span class="nav-text">Cart</span> <b class="caret"></b>
+          </a>
+          <ul  class="collapse"  id="cart"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+              
+              
+                
+                  <li >
+                    <a class="sidenav-item-link" href="{{ route('cart.list') }}">
+                      <span class="nav-text">Cart</span>
+                      
+                    </a>
+                    
+                  </li>
+                
+              
+
+              
+            </div>
+          </ul>
+        </li>
+        <li  class="has-sub" >
+          <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#orders"
+            aria-expanded="false" aria-controls="orders">
+            <i class="mdi mdi-cart-outline"></i>
+            <span class="nav-text">Orders</span> <b class="caret"></b>
+          </a>
+          <ul  class="collapse"  id="orders"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+              
+              
+                
+                  <li >
+                    <a class="sidenav-item-link" href="{{ route('orders.user.index') }}">
+                      <span class="nav-text">Orders</span>
+                      
+                    </a>
+                   
+                  </li>
+                
+              
+
+              
+            </div>
+          </ul>
+        </li>
+    
+      </ul>
+      @endif
     </div>
 
   

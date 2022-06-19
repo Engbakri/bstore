@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
+use Faker\Generator as Faker; 
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductSeeder extends Seeder
 {
@@ -15,6 +17,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+       
         Product::create([
             'product_name' => 'Watch',
             'product_description' => 'Apple watch',
@@ -39,5 +42,8 @@ class ProductSeeder extends Seeder
             'product_price' => 100,
             'product_image' => 'https://images.unsplash.com/photo-1568649929103-28ffbefaca1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80'
         ]);
+
+        
+       
     }
 }

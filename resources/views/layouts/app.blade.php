@@ -12,5 +12,6 @@
         @include('include.footer')
 
         @include('include.script')
+        
     </body>
 </html>

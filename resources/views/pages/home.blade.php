@@ -51,9 +51,9 @@
                             <ul>
                             @foreach ($categories as $index=>$category)
 
-                                <li><a href="#">{{ $category->category_name }}</a></li>
+                                <li><a href="{{ route('searchWithCategory',$category->id) }}">{{ $category->category_name }}</a></li>
                                 @foreach ($category->children as $child)
-                                     <li class="mx-5"><a href="#">{{ $child->category_name }}</a></li>
+                                     <li class="mx-5"><a href="{{ route('searchWithCategory',$child->id) }}">{{ $child->category_name }}</a></li>
                                 @endforeach
                             @endforeach
                               
@@ -106,7 +106,7 @@
                         <div class="shop-bar pb-60">
                             <div class="shop-found-selector">
                                 <div class="shop-found">
-                                    <p><span>23</span> Product Found of <span>50</span></p>
+                                    <p><span>15</span> Product Found of <span>{{ $products->count() }}</span></p>
                                 </div>
                                 <div class="shop-selector">
                                     <label>Sort By : </label>
@@ -137,7 +137,7 @@
                                         <div class="product-wrapper mb-30">
                                             <div class="product-img">
                                                 
-                                                    <img src="{{ $product->product_image }}" alt="" width="312;" height="400;">
+                                                    <img src="{{ $product->product_image }}" alt="" width="200;" height="200;">
                                                 
                                                 
                                                 <div class="product-action">
@@ -149,7 +149,7 @@
                                                         <input type="hidden" value="{{ $product->product_price }}" name="price">
                                                         <input type="hidden" value="{{ $product->product_image }}"  name="image">
                                                         <input type="hidden" value="1" name="quantity">
-                                                        <input class="animate-top"  type="submit" value="Add To Cart">
+                                                        <input class="animate-top m-2"  type="submit" value="Add To Cart" >
                                                     </form>
                                                     <a class="animate-right" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{ route('showproduct',$product->id) }}">
                                                         <i class="pe-7s-look"></i>
@@ -415,7 +415,7 @@
                 </div>
                 <div class="qwick-view-right">
                     <div class="qwick-view-content">
-                        <h3>Handcrafted Supper Mug</h3>
+                        <h3>{{ $product->product_name }}</h3>
                         <div class="price">
                             <span class="new">$90.00</span>
                             <span class="old">$120.00  </span>
@@ -557,7 +557,7 @@
 </div>
 @endsection
 
-@push('scripts')
+@push('script')
     <script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/popper.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

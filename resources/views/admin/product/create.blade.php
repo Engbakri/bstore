@@ -14,53 +14,39 @@
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <label for="validationServer01">Product name</label>
-                                    <input type="text" name="product_name" class="form-control @error('category_name') is-invalid @enderror" id="cname"  placeholder="Product Name" required>
-                                    <div class="valid-feedback">
-                                        @error('category_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <input type="text" name="product_name" class="form-control" id="cname"  placeholder="Product Name" >
+                                    
+                                        @error('product_name')
+                                        <span class="text-danger"> {{ $message }}</span>
                                         @enderror
-                                    </div>
+                               
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="validationServer01">Product Price</label>
-                                    <input type="number" name="product_price" class="form-control @error('price') is-invalid @enderror" id="cname"  placeholder="Product Price" required>
-                                    <div class="valid-feedback">
-                                        @error('category_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
+                                    <input type="number" name="product_price" class="form-control @error('price') is-invalid @enderror" id="cname"  placeholder="Product Price">
+                                    @error('product_price')
+                                    <span class="text-danger"> {{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="validationServer01">Product Image</label>
-                                    <input type="file" name="product_image" class="form-control @error('category_name') is-invalid @enderror" id="cname"  placeholder="Category Name" required>
-                                    <div class="valid-feedback">
-                                        @error('category_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
+                                    <input type="file" name="product_image" class="form-control @error('category_name') is-invalid @enderror" id="cname"  placeholder="Category Name">
+                                    @error('product_image')
+                                    <span class="text-danger"> {{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Description</label>
                                     <textarea class="form-control" name="product_description" rows="3"></textarea>
+                                    @error('product_description')
+                                    <span class="text-danger"> {{ $message }}</span>
+                                    @enderror
                                 </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="validationServer01">Product Size</label>
-                                    <input type="text" name="product_size" class="form-control @error('category_name') is-invalid @enderror" id="cname"  placeholder="Product Size" required>
-                                    <div class="valid-feedback">
-                                        @error('category_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
+                                    <input type="text" name="product_size" class="form-control @error('category_name') is-invalid @enderror" id="cname"  placeholder="Product Size">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                 <div class="form-group">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CartController extends Controller
 {
@@ -15,8 +16,10 @@ class CartController extends Controller
     public function cartList()
     {
         $cartItems = \Cart::getContent();
+
         // dd($cartItems);
-        return view('pages.cartList', compact('cartItems'));
+        $categories = Category::root()->get();
+        return view('pages.cartList', compact('cartItems','categories'));
     }
 
 
@@ -31,9 +34,8 @@ class CartController extends Controller
                 'image' => $request->image,
             )
         ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message','Product Created Successfully');
     }
 
     public function updateCart(Request $request)

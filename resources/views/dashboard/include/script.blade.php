@@ -19,3 +19,69 @@
 <script src="{{ asset('assets/assets/js/date-range.js') }}"></script>
 <script src="{{ asset('assets/assets/js/map.js') }}"></script>
 <script src="{{ asset('assets/assets/js/custom.js') }}"></script>
+<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js') }}"></script>
+
+<script>
+    @if(Session::has('message'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.success("{{ session('message') }}");
+    @endif
+  
+    @if(Session::has('error'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.error("{{ session('error') }}");
+    @endif
+  
+    @if(Session::has('info'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.info("{{ session('info') }}");
+    @endif
+  
+    @if(Session::has('warning'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.warning("{{ session('warning') }}");
+    @endif
+  </script>
+<script>
+     // display a modal (small modal)
+  $(document).on('click', '#smallButton', function(event) {
+      event.preventDefault();
+      let href = $(this).attr('data-attr');
+      $.ajax({
+          url: href
+          , beforeSend: function() {
+              $('#loader').show();
+          },
+          // return the result
+          success: function(result) {
+              $('#smallModal').modal("show");
+              $('#smallBody').html(result).show();
+          }
+          , complete: function() {
+              $('#loader').hide();
+          }
+          , error: function(jqXHR, testStatus, error) {
+              console.log(error);
+              alert("Page " + href + " cannot open. Error:" + error);
+              $('#loader').hide();
+          }
+          , timeout: 8000
+      })
+  });
+</script>
