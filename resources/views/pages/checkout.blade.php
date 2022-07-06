@@ -96,9 +96,9 @@
                                 </div>
                             </div>
                             
-                            <p class="form-row">					
-                                <input type="submit" value="Login" />
-                            </p>
+                            <div class="order-button-payment">
+                                <input type="submit" value="Place order" />
+                            </div>
                             								
                         </div>
                     </form>
@@ -266,9 +266,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="order-button-payment">
-                                <input type="submit" value="Place order" />
-                            </div>								
+								
                         </div>
                     </div>
                 </div>

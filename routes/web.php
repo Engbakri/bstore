@@ -25,6 +25,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('products', ProductController::class);
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
     Route::get('/logout', [DashboardController::class,'logout'])->name('logout.user');
+
+    //hi
+
+     // Cutomer orders 
+     Route::get('/orders/user', [OrderController::class, 'index'])->name('orders.user.index');
+     Route::get('/orders/items/{id}', [OrderController::class, 'show'])->name('order.user.items');
+     Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.user.create');
+     Route::get('/checkout', [OrderController::class, 'create'])->name('checkout');
+     Route::post('/order/checkout', [OrderController::class, 'store'])->name('order.checkout');
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -56,12 +65,7 @@ Route::prefix('dashboard')->group(function () {
     Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
     Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
    
-    // Cutomer orders 
-    Route::get('/orders/user', [OrderController::class, 'index'])->name('orders.user.index');
-    Route::get('/orders/items/{id}', [OrderController::class, 'show'])->name('order.user.items');
-    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.user.create');
-    Route::get('/checkout', [OrderController::class, 'create'])->name('checkout');
-    Route::post('/order/checkout', [OrderController::class, 'store'])->name('order.checkout');
+   
 
     
     // Admin Order proccess
